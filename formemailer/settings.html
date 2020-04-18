@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <base target="_top">
+  </head>
+  <body>
+     <div class="container">
+       <ul class="nav nav-pills nav-fill mb-3" role="tab-list">
+         <!-- Generate the "Email" tabs -->
+         <? for (var i = 0; i < s.qtt; i++) { ?> 
+         <li class="nav-item">
+           <a class="nav-link <?= i == 0 ? 'active' : ''?>" 
+              id="<?= 'email' + i ?>" 
+              data-toggle="pill" 
+              href="<?= '#email-content' + i?>" 
+              role="tab" 
+              aria-controls="<?= 'email-content' + i?>" 
+              aria-selected="<?= i == 0 ? 'true' : 'false'?>">
+             <?= repl_(T.emailTab, i+1) ?>
+           </a>
+         </li>
+         <? } ?> 
+         <!-- Generate the 'Advanced' tab -->
+         <li class="nav-item">
+           <a class="nav-link" 
+              id="advanced" 
+              data-toggle="pill" 
+              href="#advanced-content" 
+              role="tab" 
+              aria-controls="#advanced-content"
+              aria-selected="false">
+             <?= T.advTab ?>
+           </a>
+         </li>
+       </ul>
+       
+       <!-- Generate "Email" tabs' content -->
+       
+       <form id="settings-form">
+         <div class="tab-content">
+       <? for (var i = 0; i < s.qtt; i++) { ?>
+           <div class="tab-pane <?= i == 0 ? 'active' : ''?>"
+                id="<?= 'email-content' + i ?>"
+                role="tabpanel"
+                aria-labelledby="<?= 'email-content' + i +'-tab' ?>">
+             <div class="form-group row">
+               <label class="col-md-3 col-form-label" 
+                      for="<?= 'sender-name' + i ?>">
+                 <?= T.sender ?>
+               </label>
+               <div class="col-md-9">
+                 <input type="text" 
+                        class="form-control"
+                        id="<?= 'sender-name' + i ?>" 
+                        value="<?= s[ef[0]+i] ?>"/>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="col-md-3 col-form-label" 
+                      for="<?= 'reply-to' + i ?>">
+                 <?= T.replyTo ?>
+               </label>
+               <div class="col-md-9">
+                 <input type="text" 
+                        class="form-control"
+                        id="<?= 'reply-to' + i ?>" 
+                        value="<?= s[ef[1]+i] ?>"/>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="col-md-3 col-form-label"
+                      for="<?= 'to' + i ?>">
+                 <?= T.to ?>
+               </label>
+               <div class="col-md-9">
+                 <input type="text"
+                        class="form-control"
+                        id="<?= 'to' + i ?>"
+                        value="<?= s[ef[2]+i] ?>"/>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="col-md-3 col-form-label" 
+                      for="<?= 'cc' + i ?>">
+                 <?= T.cc ?>
+               </label>
+               <div class="col-md-9">
+                 <input type="text" 
+                        id="<?= 'cc' + i ?>" 
+                        class="form-control"
+                        value="<?= s[ef[3]+i] ?>"/>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="col-md-3 col-form-label" 
+                      for="<?= 'bcc' + i ?>">
+                 <?= T.bcc ?>
+               </label>
+               <div class="col-md-9">
+                 <input type="text" 
+                        id="<?= 'sender-name' + i ?>" 
+                        class="form-control"
+                        value="<?= s[ef[4]+i] ?>"/>
+               </div>
+             </div>
+             <div class="form-group row">
+               <label class="col-md-3 col-form-label" 
+                      for="<?= 'subject' + i ?>">
+                 <?= T.subject ?>
+               </label>
+               <div class="col-md-9">
+                 <input type="text" 
+                        id="<?= 'subject' + i ?>"
+                        class="form-control"
+                        value="<?= s[ef[5]+i] ?>"/>
+               </div>
+             </div>
+             <div class="form-group row">
+               <div class="form-inline">
+               <label class="col-md-1 col-form-label" 
+                      for="<?= 'body' + i ?>">
+                 <?= T.body ?>
+               </label>
+               <div class="form-check col-md-1 ml-3">
+                 <input class="form-check-input"
+                        id="<?= 'html' + i ?>"
+                        type="checkbox"
+                        <?= s[ef[7]+i] == 'on' ? 'checked' : '' ?>>
+                 <label class="form-check-label" 
+                        for="<?= 'html' + i ?>">
+                   <?= T.html ?>
+                 </label>
+                   
+               </div>
+               </div>
+               <div class="col-md-9">
+                 <textarea class="form-control" 
+                           rows="10" 
+                           id="<?= 'body' + i ?>">
+                   <?= s[ef[6]+i] ?>
+                 </textarea>
+               </div>
+             </div>
+  
+         </div>
+       <? } ?>
+      
+       <!-- Generate the 'Advanced' tabs' content -->
+       <div class="tab-pane" 
+            id="advanced-content" 
+            role="tabpanel"
+            aria-labelledby="advanced-content-tab">
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="form-sheet">
+             <?= T.fSheet ?>
+           </label>
+           <div class="col-md-9">
+             <input type="text" 
+                    id="form-sheet"
+                    class="form-control"
+                    aria-describedby="form-sheet-help"
+                    required
+                    value="<?= s[ap[0]] ?>"/>
+             <small id="form-sheet-help" class="form-text text-muted">
+                <?= T.fSheetDESC ?>
+             </small>
+           </div>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="qtt-emails">
+             <?= T.qtt ?>
+           </label>
+           <div class="col-md-9">
+             <input type="number" 
+                    id="qtt-emails"
+                    class="form-control"
+                    aria-describedby="qtt-emails-help"
+                    min="1"
+                    max="10"
+                    value="<?= s[ap[1]] ?>"/>
+             <small id="qtt-emails-help" class="form-text text-muted">
+                <?= T.qttDESC ?>
+             </small>
+           </div>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="quota-warning">
+             <?= T.qWarn ?>
+           </label>
+           <div class="col-md-9">
+             <input type="number" 
+                    id="quota-warning"
+                    class="form-control"
+                    aria-describedby="quota-warning-help"
+                    min="0"
+                    value="<?= s[ap[2]] ?>"/>
+             <small id="quota-warning-help" class="form-text text-muted">
+               <?= T.qWarnDESC ?>
+             </small>
+           </div>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="quota-limit">
+             <?= T.qLimit ?>
+           </label>
+           <div class="col-md-9">
+             <input type="text" 
+                    id="quota-limit"
+                    class="form-control"
+                    aria-describedby="quota-limit-help"
+                    min="0"
+                    value="<?= s[ap[3]] ?>"/>
+             <small id="quota-limit-help" class="form-text text-muted">
+                <?= T.qLimitDESC ?>
+             </small>
+           </div>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="formulas-location">
+             <?= T.fLoc ?>
+           </label>
+           <div class="col-md-9">
+             <input type="text" 
+                    id="formulas-location"
+                    class="form-control"
+                    aria-describedby="formulas-location-help"
+                    pattern="*!* | ^$"
+                    value="<?= s[ap[4]] ?>"/>
+             <small id="formulas-location-help" class="form-text text-muted">
+               <?= T.fLocDESC ?>
+             </small>
+           </div>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="closure-mode">
+             <?= T.closure ?>
+           </label>
+           <div class="col-md-9">
+             <select id="closure-mode"
+                     class="form-control"
+                     aria-describedby="closure-mode-help">
+               <option><?= T.closureValues ?></option>
+               <option><?= T.closureFormulas ?></option>
+               <option><?= T.closureClear ?></option>
+             </select>
+             <small id="closure-mode-help" class="form-text text-muted">
+               <?= T.closureDESC ?>
+             </small>
+           </div>
+         </div>
+         <div class="form-group row">
+           <label class="col-md-3 col-form-label" 
+                  for="remaining-quota">
+             <?= T.quota ?>
+           </label>
+           <div class="col-md-9">
+             <input id="remaining-quota"
+                    type="text"
+                    class="form-control"
+                    aria-describedby="remaining-quota-help"
+                    value="<?= s[ap[6]] ?>"
+                    readonly>
+             <small id="remaining-quota-help" class="form-text text-muted">
+               <?= T.quotaDESC ?>
+             </small>
+           </div>
+         </div>
+       </div>
+       <button type="submit" class="btn btn-primary"><?= T.saveAndClose ?></button>
+     </div>
+     </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+      // Any server side variables we need, grab them here
+      // Cannot use templates inside of functions, only once at compile time
+      var numEmailTabs = <?= s.qtt ?>;
+      var version = <?= VERSION ?>;
+      function generateJsonFromForm() {
+         // Populate advanced settings
+         var json = {
+             'fSheet': $('#form-sheet').val(),
+             'qtt': $('#qtt-emails').val(),
+             'qWarn': $('#quota-warning').val(),
+             'qLimit': $('#quota-limit').val(),
+             'fLoc': $('#formulas-location').val(),
+             'closure': $('#closure-mode option:selected').text(),        
+         }
+         
+         // Populate settings from each email tab
+         for (var currentTab = 0; currentTab < numEmailTabs; currentTab++) {
+            json['sender' + currentTab] = $('#sender-name' + currentTab).val() || ''
+            json['replyTo' + currentTab] = $('#reply-to' + currentTab).val() || ''
+            json['to' + currentTab] = $('#to' + currentTab).val() || ''
+            json['cc' + currentTab] = $('#cc' + currentTab).val() || ''
+            json['bcc' + currentTab] = $('#bcc' + currentTab).val() || ''
+            json['subject' + currentTab] = $('#subject' + currentTab).val() || ''
+            json['body' + currentTab] = $('#body' + currentTab).val() || ''
+            json['html' + currentTab] = $('#html' + currentTab).val() || ''
+         } 
+         // Lastly put the current version in
+         json['Version'] = version
+         return json
+      }
+      
+      $('#settings-form').on('submit', function (e) {
+        e.preventDefault();
+        var json = generateJsonFromForm()
+        // Pass json to be saved in the spreadsheet
+        google.script.run.withSuccessHandler(function () {
+          // Close our modal after we save
+          google.script.host.close()
+        }).save(json);
+      })
+    </script>
+  </body>
+</html>
