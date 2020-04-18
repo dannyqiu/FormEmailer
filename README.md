@@ -33,8 +33,9 @@ Please download the zip file [here](https://raw.github.com/clyall/formemailer/ma
    - settings
    - install
    - fix-sheet
+
   Once done, you should see 5 files on the lefthand side of the editor:
-  
+
   ![Script Files](/script-files.PNG)
 
  4. Copy / paste the contents of each file in the attached zip file into the corresponding files. The easiest way to do this is by opening up each file in a text editor, selecting all text (Ctrl+a) and copying it. Then, in the script editor, select all text, delete it, and then paste the file contents. Make sure you save each file as you paste contents in.
@@ -103,7 +104,7 @@ Once you have downloaded, installed and setup the time-trigger, you can now begi
 FormEmailer has several handy formatting tools built in. Below are common use cases
 
 ### Variables in Email Template
-After intial installation, you may have notcied that the "Body" under the Email tab in Settings contains HTML and variables surrounded by "#"'s. When emails are generated, any text surrounded by #'s will be replaced by the field in the corresponding cell. For example, if your sheet containing form responses has two response fields ("Name" and "Age"), your email template should contain "#Name#" and "#Age#" anywhere you want to insert this value into the email
+After intial installation, you may have notcied that the "Body" under the Email tab in Settings contains HTML and variables surrounded by "#"'s. When emails are generated, any text surrounded by #'s will be replaced by the field in the corresponding cell. For example, if your sheet containing form responses has two response fields ("Name" and "Age"), your email template should contain "#Name#" and "#Age#" anywhere you want to insert this value into the email. These variables can be placed in any of the "Sender Name", "Reply To", "To", "Cc", "Bcc", "Subject", "Body" fields.
 
 ### Including Formats in your Template
 If you would like to customize the format on your variables, you can use the following format:
@@ -129,6 +130,7 @@ The script uses a built-in utility to do the date formatting. For more acceptabl
 | M/d/yy HH:mm:ss | 4/9/19 17:30:00 |
 | h:mm a | 5:30 PM |
 | EEEE, d 'of' MMMM-yyyy | Friday, 8 of April-2019 |
+
 ### Number Formatting
 Number format are built using the following logic, which may seem difficult at first, but once you get used to it, is very simple to use.
   * If there's a single character, it will be taken as the decimal separator (this is the only obligatory element).
