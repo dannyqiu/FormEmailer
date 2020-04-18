@@ -114,11 +114,17 @@ function timeDriven(e) {
     monitor_(true);
 }
 
+// Helper function to display HTML content from file
+function showHtmlDialog(htmlFilename) {
+  var htmlModal = HtmlService.createTemplateFromFile(htmlFilename).evaluate().setWidth(640).setHeight(500);
+  SpreadsheetApp.getUi().showModalDialog(htmlModal, repl_(T.version, NAME, VERSION));
+} 
+
 function about() {
-  if( !loadOrDefaults_() )
+  if( !loadOrDefaults_() ) {
     return;
-  var aboutModal = HtmlService.createTemplateFromFile('about.html').evaluate().setSandboxMode(HtmlService.SandboxMode.IFRAME);
-  SpreadsheetApp.getUi().showModalDialog(aboutModal, repl_(T.version, NAME, VERSION));
+  }
+  return showHtmlDialog('about.html');
 }
 
 function onOpen() {
@@ -342,10 +348,10 @@ function checkTrigger_(runningNow) {
 }
 
 function settings() {
-  if( !loadOrDefaults_() )
+  if( !loadOrDefaults_() ) {
     return;
-  var settingsModal = HtmlService.createTemplateFromFile('settings.html').evaluate();
-  SpreadsheetApp.getUi().showModalDialog(settingsModal, repl_(T.title, NAME));
+  }
+  return showHtmlDialog('settings.html');
 }
 
 function save(passedJson) {
@@ -473,9 +479,7 @@ function loadOrDefaults_() {
             sheetList.push(name);
         }
         // Show prompt to fix modal and return, problem will be fixed if they accept
-        var fixSheetModal = HtmlService.createTemplateFromFile('fix-sheet.html').evaluate();
-        SpreadsheetApp.getUi().showModalDialog(fixSheetModal, NAME);
-        return;
+        return showHtmlDialog('fix-sheet.html');
        
       // Otherwise, config is messed up, just re-install
       } else
@@ -531,7 +535,7 @@ function changeColumnNotation_(col,toNumber) {
 
 function createDefaults_() {
   //Form sheet,Qtt Emails,Quota warning,Quota limit,Formulas location,Closure mode
-  var apv = [c.fs.getName(),1,150,30,'',T.closureValues];
+  var apv = [c.fs.getName(),1,50,30,'',T.closureValues];
   for( var i in apv )
     s[ap[i]] = apv[i];
   c.questions = parseQuestions_(c.fs.getRange(1,2,1,c.fs.getLastColumn()-1).getValues()[0]);
@@ -607,8 +611,7 @@ function install() {
       found = true;
   }
 
-  var installModal = HtmlService.createTemplateFromFile('install.html').evaluate();
-  SpreadsheetApp.getUi().showModalDialog(installModal, repl_(T.title, NAME));
+  return showHtmlDialog('install.html');
 }
 
 function langChange_(e) {
@@ -780,4 +783,3 @@ function uget_(prop,def)   { return get_(UserProperties, prop) || def; }
 function uset_(prop,value) { set_(UserProperties, prop, value); }
 function set_(o,p,v) { try { o.setProperty(p,v); } catch(e) {} }
 function get_(o,p) { try { return o.getProperty(p); } catch(e) { return ''; } }
-
