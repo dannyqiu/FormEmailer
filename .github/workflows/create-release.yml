@@ -1,0 +1,24 @@
+name: Create Github release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Run release script
+      run: sh ${GITHUB_WORKSPACE}/.github/workflows/release.sh
+
+    - name: Create a Release
+      uses: softprops/action-gh-release@v0.1.5
+      with:
+        # Newline-delimited list of path globs for asset files to upload
+        files: |
+          /tmp/formemailer.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
