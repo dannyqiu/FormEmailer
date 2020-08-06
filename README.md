@@ -24,7 +24,7 @@ This script integrates directly with a Google Sheet that holds Google Form respo
 6. [Support this Project](#support-this-project)
 
 ## Getting Started
-Please download the zip file [here](https://raw.github.com/clyall/formemailer/master/FormEmailer.zip) 
+Please download the zip file [here](https://github.com/dannyqiu/FormEmailer/releases/latest/download/formemailer.zip).
 
 1. Unzip the downloaded file (FormEmailer.zip)
 2. In the Google Sheet you want FormEmailer installed in, click "Tools" > "Script Editor" to open the scripts editor in a new tab.
